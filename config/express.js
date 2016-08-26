@@ -1,5 +1,6 @@
 //A variável express armazena uma função que retorna uma instância do Express.
 var express = require("express");
+var home = require("../app/routes/home");
 
 //module.exports é retornado quando executado o require
 module.exports = function() {
@@ -16,7 +17,7 @@ module.exports = function() {
     app.set("views", "./app/views");
     
     //Routes
-    var home = require("./app/routes/home");
+    
     home(app);
     
     return app;
