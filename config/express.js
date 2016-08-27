@@ -1,6 +1,6 @@
 //A variável express armazena uma função que retorna uma instância do Express.
 var express = require("express");
-var home = require("../app/routes/home");
+var load = require("express-load");
 
 //module.exports é retornado quando executado o require
 module.exports = function() {
@@ -16,9 +16,11 @@ module.exports = function() {
     app.set("view engine", "ejs");
     app.set("views", "./app/views");
     
-    //Routes
-    
-    home(app);
+    //Load dos módulos (injeção das dependências) através do plugin express-load
+    load("models", {cwd: "app"})
+        .then("controllers")
+        .then("routes")
+        .into(app);
     
     return app;
 };
