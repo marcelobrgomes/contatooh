@@ -5,4 +5,11 @@ angular.module("contatooh", ["ngRoute"])
             templateUrl: "partials/contatos.html",
             controller: "ContatosController"
         });
+    
+        $routeProvider.when("/contatos/:idContato", {
+            templateUrl: "partials/contato.html",
+            controller: "ContatoController"
+        });
+    
+        $routeProvider.otherwise({redirectTo: "/contatos"});
     });
